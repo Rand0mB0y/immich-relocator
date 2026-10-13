@@ -4,7 +4,7 @@
 
 </div>
 
-Relocate all your pictures & videos from the Immich internal folder to one or more External Libraries of your choice and update the Immich database accordingly, so that you do not lose albums, stacks, faces, tags, etc.
+Immich Relocator (formerly immich-migrate-to-external-library), can relocate all your pictures & videos from the Immich internal folder to one or more External Libraries of your choice and update the Immich database accordingly, so that you do not lose albums, stacks, faces, tags, etc.
 
 ### Optional Advanced Features
 Immich Relocator can be configured with optional advanced features that will allow you to:
@@ -25,7 +25,8 @@ Immich Relocator can be configured with optional advanced features that will all
 ## Table of Content
 - [The Technical Stuff](#the-technical-stuff)
 - [Prerequisites](#prerequisites)
-- [Install, Configure & First Run](#install-configure--first-run)
+- [How to Install & Configure](#how-to-install--configure)
+- [How to Use Immich Relocator](#how-to-use-immich-relocator)
 - [Storage Template Migration job (Optional)](#storage-template-migration-job-optional)
 - [Folder Restructure (Optional)](#folder-restructure-optional)
 - [Pseudo UserShared - For the Immich Partner (Optional)](#pseudo-usershared---for-the-immich-partner--optional)
@@ -34,6 +35,8 @@ Immich Relocator can be configured with optional advanced features that will all
 - [Restoring from a Database Backup](#restoring-from-a-database-backup)
 
 ---
+
+<br>
 
 <div align="center">
 
@@ -72,6 +75,7 @@ Immich Relocator can be configured with optional advanced features that will all
 
 ---
 
+<br>
 <div align="center">
 
 ## Prerequisites
@@ -91,9 +95,10 @@ Immich Relocator can be configured with optional advanced features that will all
 
 ---
 
+<br>
 <div align="center">
 
-## Install, Configure & First Run
+## How to Install & Configure
 
 </div>
 
@@ -129,7 +134,18 @@ The command you will need to run will look something like:
 sudo ln -s /mnt/path/to/your/immich/folder /immich/internal/path/
 ```
 This is needed for the first time only, and it is the only time you will need to use `sudo`.
-  
+
+
+
+<br>
+<div align="center">
+
+## How to use Immich Relocator
+
+</div>
+
+
+
 ### Usage: flags and full run modes
 
 The script runs with a simple `./relocator.sh` command, but you have the option to use some optional flags:
@@ -171,7 +187,7 @@ The command above limits the script to relocate only up to 1000 files (pictures 
 
 ---
 
-
+<br>
 <div align="center">
 
 ## Storage Template Migration job (Optional)
@@ -199,7 +215,7 @@ Done.
 
 ---
 
-
+<br>
 <div align="center">
 
 ## Folder Restructure (Optional)
@@ -267,7 +283,7 @@ If your external library destination is mounted via CIFS/SMB (most NAS shares), 
 
 
 ---
-
+<br>
 <div align="center">
 
 ## Pseudo `UserShared` - For the Immich Partner  (Optional)
@@ -375,7 +391,7 @@ Take note of the `UserShared` UUID number in Immich GUI: Administration -> Users
   
 Done. The Pseudo `SharedUser` feature is now enabled.
 
-#### ⚠ IMPORTANT:
+#### LIMITATIONS (⚠ IMPORTANT):
 - The script only checks is the pic/video is contained in an album, and if that album is shared. If **yes**, then it relocates it to the shared external library, if **not** it relocates it to personal. It does not check if it is shared with Andrea or joe. So, if you share albums with multiple users, this feature will not fit you.
 - If items do not belong to, at least, one album, then the whole logic becomes way more fragile and predictable. Find if items are not in any albums via Immich GUI: Search Option -> Display options -> "Not in any album" to visualise any media that it is not in any album and add items to a shared or unshared album.
 - If you use this feature then make sure to delete any picture/video from your devices before to run the `relocator.sh` script. Immich's deduplication only works for files owned by the same user. But since ownership is changed, if you don't delete the files from partners' devices first you'll end up with as many duplicates as the shared files are.
@@ -384,7 +400,7 @@ Done. The Pseudo `SharedUser` feature is now enabled.
 
 
 ---
-
+<br>
 <div align="center">
 
 ## Troubleshooting
@@ -403,7 +419,7 @@ Done. The Pseudo `SharedUser` feature is now enabled.
 | Backup file appears "truncated"                          | The backup is likely fine — the integrity check searches for the `PostgreSQL database dump complete` marker. If it's missing, the `pg_dump` was interrupted. Re-run. |
 
 ---
-
+<br>
 <div align="center">
 
 ## Unattended / Cron usage
@@ -424,7 +440,7 @@ Example cron (runs daily at 03:00):
 
 
 ---
-
+<br>
 <div align="center">
 
 ## Restoring from a Database Backup
@@ -451,8 +467,13 @@ docker exec -i immich_postgres psql -U postgres immich < ~/immich-relocator/db-b
 docker compose up -d immich-server
 ```
 
+<br>
+<div align="center">
 
 ## A.I. Disclosure & Disclaimer
+
+</div>
+
 
 Although a lot of manual hard work happened for this project, a large part of the Immich Relocator code was implemented by various AI models. Having said that, multiple developers, with actual blood in their veins, have envisioned the logic and tested the outcomes the best they could on their testing environments. 
 Every words contained in this readme file (apart from the prerequisites and troubleshooting tables) were written by a human hand, to ensure the usage is clear and with detailed examples.
