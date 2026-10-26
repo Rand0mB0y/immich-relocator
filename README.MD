@@ -226,10 +226,10 @@ Done.
 </div>
 
 
-> [!IMPORTANT]
-This feature depends on:
-- Multi External Libraries are enabled (EXTERNAL_LIBRARIES_COUNT is bigger than 1)
-- Storage Template Migration job feature is enabled (you added a correct API key in relevant block)
+> [!NOTE]
+> This feature depends on:
+> - Multi External Libraries are enabled (EXTERNAL_LIBRARIES_COUNT is bigger than 1)
+> - Storage Template Migration job feature is enabled (you added a correct API key in relevant block)
 
 
 
