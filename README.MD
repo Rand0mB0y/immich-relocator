@@ -307,10 +307,10 @@ FOLDER_RESTRUCTURE=true
   
 Done. The Folder Restructure feature is now enabled. The safest way to test it for the first time is to use `./relocator.sh --dry-run --full`, which will run the Storage Template Migration job before telling you how many files would be relocated. If everything looks good to you, go ahead and run `./relocator.sh` with or without the `--limit N` flag.
 
-
-LIMITATIONS: If you notice doubles during the next external library rescan, inspect the full path of each photo using the "i" icon via the Immich GUI. It is highly likely that the paths of the doubled items differ in casing between the two versions.
+> [!CAUTION]
+> If you notice doubles during the next external library rescan, inspect the full path of each photo using the "i" icon via the Immich GUI. It is highly likely that the paths of the doubled items differ in casing between the two versions.
 If your external library destination is mounted via CIFS/SMB (most NAS shares), the filesystem is case-insensitive. If a directory with different casing already exists at the destination (e.g. from a prior run or Immich's own indexing), the file may be placed in a directory with the wrong casing while the database records the intended case. This causes Immich to treat the file as new on the next scan, generating a duplicate. 
-`{{make}}` or `{{model}}` present in the Storage Template are the likely reason for failure here, inspect the casing and try using `{{model}}` only, instead of `{{make}}_{{model}}`, in your Storage Template to see if that prevents the issue in the future.
+> `{{make}}` or `{{model}}` present in the Storage Template are the likely reason for failure here, inspect the casing and try using `{{model}}` only, instead of `{{make}}_{{model}}`, in your Storage Template to see if that prevents the issue in the future.
 
 
 ---
