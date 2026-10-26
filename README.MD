@@ -231,14 +231,6 @@ Done.
 > - Multi External Libraries are enabled (EXTERNAL_LIBRARIES_COUNT is bigger than 1)
 > - Storage Template Migration job feature is enabled (you added a correct API key in relevant block)
 
-
-
-```
-⚠ IMPORTANT: This feature depends on:
-- Multi External Libraries are enabled (EXTERNAL_LIBRARIES_COUNT is bigger than 1)
-- Storage Template Migration job feature is enabled (you added a correct API key in relevant block)
-```
-
 Immich Relocator can reorganise your final folder structure just before relocating files to the external library.
 
 This requires a combination of:
@@ -300,14 +292,12 @@ If your external library destination is mounted via CIFS/SMB (most NAS shares), 
 
 </div>
 
-
-```
-⚠ IMPORTANT: This feature depends on:
-- Multi External Libraries are enabled (EXTERNAL_LIBRARIES_COUNT is bigger than 1)
-- Storage Template Migration job feature is enabled (you added a correct API key in the relevant block)
-- Every pic/video of the Immich library has been added to at least one album
-- For a neater result, enabling the Folder Restructure feature is also suggested
-```
+> [!NOTE]
+> This feature depends on:
+> - Multi External Libraries are enabled (EXTERNAL_LIBRARIES_COUNT is bigger than 1)
+> - Storage Template Migration job feature is enabled (you added a correct API key in the relevant block)
+> - Every pic/video of the Immich library has been added to at least one album
+> - For a neater result, enabling the Folder Restructure feature is also suggested
 
 ### Why this feature exists
 
@@ -401,12 +391,12 @@ Take note of `UserShared`'s UUID in the Immich GUI: Administration -> Users -> P
   
 Done. The Pseudo `UserShared` feature is now enabled.
 
-#### LIMITATIONS (⚠ IMPORTANT):
-- The script **only checks if the pic/video is contained in an album**, and if that album is shared. If **yes**, it relocates it to the shared external library; if **no**, it relocates it to the personal library. It does not check if it is shared with Andrea or Joe. So, **if you share albums with multiple users, this feature may not suit you**.
-- If items do not belong to, at least, one album, then the whole logic becomes far more fragile and unpredictable. Find items that are not in any album via the Immich GUI: Search Option -> Display options -> "Not in any album" to visualise any media not in an album and add them to a shared or unshared album.
-- If you use this feature then make sure to delete any picture/video from your devices before running the `relocator.sh` script. Immich's deduplication only works for files owned by the same user. But since ownership is changed, if you don't **delete the files from partners' devices first you'll end up with as many duplicates as there are shared files**.
-- **Stack ownership inconsistency**. Immich Relocator only changes the ownership of an individual asset. When an asset that is part of a stack gets its ownership changed to UserShared, the stack record itself remains owned by the original user. This means the primary asset is now owned by UserShared while the stack container still belongs to the original owner, creating an inconsistent state. This may cause unexpected behavior when viewing or managing stacked photos. For stacked assets being relocated with ownership change, the script will warn you but will not skip them. If you want to avoid this issue, either unstack these photos before running the script, or avoid using the Pseudo UserShared feature entirely on libraries containing stacks.
-- Immich Relocator only changes the ownership of an item, so things like **faces and stacks stay with the original owner**. UserShared will not see these faces in their People section and Immich does not automatically regenerate faces for the new owner.
+> [!WARNING]
+> - The script **only checks if the pic/video is contained in an album**, and if that album is shared. If **yes**, it relocates it to the shared external library; if **no**, it relocates it to the personal library. It does not check if it is shared with Andrea or Joe. So, **if you share albums with multiple users, this feature may not suit you**.
+> - If items do not belong to, at least, one album, then the whole logic becomes far more fragile and unpredictable. Find items that are not in any album via the Immich GUI: Search Option -> Display options -> "Not in any album" to visualise any media not in an album and add them to a shared or unshared album.
+> - If you use this feature then make sure to delete any picture/video from your devices before running the `relocator.sh` script. Immich's deduplication only works for files owned by the same user. But since ownership is changed, if you don't **delete the files from partners' devices first you'll end up with as many duplicates as there are shared files**.
+> - **Stack ownership inconsistency**. Immich Relocator only changes the ownership of an individual asset. When an asset that is part of a stack gets its ownership changed to UserShared, the stack record itself remains owned by the original user. This means the primary asset is now owned by UserShared while the stack container still belongs to the original owner, creating an inconsistent state. This may cause unexpected behavior when viewing or managing stacked photos. For stacked assets being relocated with ownership change, the script will warn you but will not skip them. If you want to avoid this issue, either unstack these photos before running the script, or avoid using the Pseudo UserShared feature entirely on libraries containing stacks.
+> - Immich Relocator only changes the ownership of an item, so things like **faces and stacks stay with the original owner**. UserShared will not see these faces in their People section and Immich does not automatically regenerate faces for the new owner.
 
 
 ---
