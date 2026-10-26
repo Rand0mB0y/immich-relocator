@@ -29,7 +29,7 @@ Immich Relocator (formerly immich-migrate-to-external-library) can relocate all 
 
 ---
 
-## Table of Content
+## Table of Contents
 - [The Technical Stuff](#the-technical-stuff)
 - [Prerequisites](#prerequisites)
 - [How to Install & Configure](#how-to-install--configure)
@@ -362,7 +362,7 @@ But it does not stop here. Joe and Andrea can still have their own private pictu
 
 Most importantly, Joe and Andrea can still retrieve who took which photo in Japan, as their media will be safely stored in a subfolder named after their UUID or Storage Label.
 
-### FOLDER STRUCTURE RESULT AFTER RELOCATION:
+### Folder Restructure Result After Relocation:
 ```
 UserShared's External Library
 |_ 2023-02 - Japan
