@@ -130,8 +130,8 @@ Fill in every non-optional value present in the `.env.example` template. Follow 
 The easiest way to do this is to run the script for the first time using the `--dry-run` flag and follow the instructions about how to create the symlink:
 ```bash
 ./relocator.sh --dry-run
-# → if it errors with "Symlink ... not found. Create it: sudo ln -s ..."
-#   Run that suggested command exactly as shown, then re-run --dry-run to confirm it works
+# If it errors with "Symlink ... not found. Create it: sudo ln -s ..."
+# Run the suggested command as shown, then re-run --dry-run to confirm it works
 ```
 The command will look something like:
 ```bash
