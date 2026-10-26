@@ -346,7 +346,7 @@ Immich Relocator helps users to almost never having to interact with the `UserSh
 User1: Joe
 User2: Andrea
 User3: UserShared
-EXT_LIBRARIES: /mnt/external-library-joe, /mnt/external-library-andrea, /mnt/external-library-usershared
+EXT_LIBRARIES: /mnt/ext-lib-joe, /mnt/ext-lib-andrea, /mnt/ext-lib-usershared
 ```
 
 Joe and Andrea go to visit Japan. Joe creates a new "Japan" album which shares with Andrea via Joe's own Immich profile. Andrea contributes by adding photos to the same album.
@@ -398,7 +398,7 @@ Andrea's External Library
 ### Logic:
 Is the pic/video included in an album that is shared?
 - IF **YES** (album is shared):
-	- Relocate picture/video to `/mnt/external-library-usershared`
+	- Relocate picture/video to `/mnt/ext-lib-usershared`
 	- Change ownership of files to `UserShared` (so that now shared pics can be shown in timeline, via Partner Sharing)
 	- Update database
 - IF **NO** (album is unshared):
@@ -414,7 +414,7 @@ Take note of `UserShared`'s UUID in the Immich GUI: Administration -> Users -> P
   
 2 - Make sure `UserShared` has its own dedicated external library, and that `UserShared` actually owns it. Add the external library name to `LIBRARY_NAME_SHARED` exactly as it is shown on the Immich GUI.
   
-3 - Add the actual path (e.g. `/mnt/external-library-usershared`) to `DEST_SHARED` in the `.env` file.
+3 - Add the actual path (e.g. `/mnt/ext-lib-usershared`) to `DEST_SHARED` in the `.env` file.
 
 4 - Enable the [Storage Template Migration job](#storage-template-migration-job-optional) feature
   
