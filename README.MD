@@ -34,12 +34,12 @@ Immich Relocator (formerly immich-migrate-to-external-library) can relocate all 
 - [Prerequisites](#prerequisites)
 - [How to Install & Configure](#how-to-install--configure)
 - [How to Use Immich Relocator](#how-to-use-immich-relocator)
+- [Restoring from a Database Backup](#restoring-from-a-database-backup)
 - [Storage Template Migration job (Optional)](#storage-template-migration-job-optional)
 - [Folder Restructure (Optional)](#folder-restructure-optional)
 - [Pseudo UserShared - For the Immich Partner (Optional)](#pseudo-usershared---for-the-immich-partner--optional)
 - [Troubleshooting](#troubleshooting)
 - [Unattended / Cron usage](#unattended--cron-usage)
-- [Restoring from a Database Backup](#restoring-from-a-database-backup)
 
 ---
 
@@ -187,6 +187,35 @@ But wait... to be extra safe, limit the amount of files that will relocate durin
 ```
 The command above limits the script to relocate only up to 1000 files (pictures or videos). This is useful for relocating a large library in batches, and for testing a small sample while configuring the `.env` file for the first time (e.g. `./relocator.sh --limit 2` will only relocate 2 files).
 
+
+---
+
+<br>
+<div align="center">
+
+## Restoring from a Database Backup
+
+</div>
+
+
+If something goes wrong:
+```bash
+# Stop Immich
+cd $COMPOSE_DIR && docker compose stop immich-server
+
+```
+
+Double-check where the files are. 
+In case of issues, the script should automatically move the files back to their original location (Immich internal "upload" folder), but if for whatever reason this did not happen, move the files manually back to their source.
+
+Then:
+```bash
+# Restore
+docker exec -i immich_postgres psql -U postgres immich < ~/immich-relocator/db-backups/immich_backup_YYYYMMDD_HHMM.sql
+
+# Start Immich
+docker compose up -d immich-server
+```
 
 ---
 
@@ -440,32 +469,6 @@ Example cron (runs daily at 03:00):
 
 
 ---
-<br>
-<div align="center">
-
-## Restoring from a Database Backup
-
-</div>
-
-
-If something goes wrong:
-```bash
-# Stop Immich
-cd $COMPOSE_DIR && docker compose stop immich-server
-
-```
-
-Double-check where the files are. 
-In case of issues, the script should automatically move the files back to their original location (Immich internal "upload" folder), but if for whatever reason this did not happen, move the files manually back to their source.
-
-Then:
-```bash
-# Restore
-docker exec -i immich_postgres psql -U postgres immich < ~/immich-relocator/db-backups/immich_backup_YYYYMMDD_HHMM.sql
-
-# Start Immich
-docker compose up -d immich-server
-```
 
 <br>
 <div align="center">
